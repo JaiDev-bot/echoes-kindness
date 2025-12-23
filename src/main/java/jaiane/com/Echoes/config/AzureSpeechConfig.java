@@ -1,4 +1,4 @@
-package config;
+package jaiane.com.Echoes.config;
 
 
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
