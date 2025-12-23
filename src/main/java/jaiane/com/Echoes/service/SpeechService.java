@@ -12,6 +12,8 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class SpeechService {
 
+
+    private static String ultimaFrase = "Aguardando fala do médico...";
     private final SpeechConfig speechConfig;
 
     public SpeechService(SpeechConfig speechConfig) {
@@ -33,13 +35,18 @@ public class SpeechService {
             // Evento disparado enquanto o usuario ainda está falando, no caso do tablet de um paciente, enquanto o médico fala
             // o paciente pode ver em tempo real as palavras se formando
             recognizer.recognizing.addEventListener((s, e) -> {
+                String parcial = e.getResult().getText();
                 System.out.println("👂 Ouvindo: " + e.getResult().getText());
+
+                ultimaFrase = parcial;
             });
 
             // Evento disparado quando a pessoa que está falando termina
             recognizer.recognized.addEventListener((s, e) -> {
                 if (e.getResult().getReason() == ResultReason.RecognizedSpeech) {
+                    String textoFinal = e.getResult().getText();
                     System.out.println(" Transcrição Final: " + e.getResult().getText());
+                    ultimaFrase = textoFinal;
                 }
             });
 
@@ -47,12 +54,16 @@ public class SpeechService {
             recognizer.startContinuousRecognitionAsync().get();
 
             // Mantém o programa rodando por 30 segundos para teste
-            Thread.sleep(30000);
+            Thread.sleep(60000);
 
 
-            recognizer.stopContinuousRecognitionAsync().get();
-            System.out.println(" Sessão encerrada!!");
+
         }
+
+    }
+
+    public String getUltimaFrase() {
+        return ultimaFrase ;
     }
 }
 
