@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Echoes of Kindness - Acessibilidade</title>
+    <style>
+        body {
+            background-color: #000; /* Fundo preto para alto contraste */
+            color: #FFFF00; /* Letras amarelas (melhor para idosos/baixa visão) */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        #texto-gigante {
+            font-size: 8vw;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.2;
+            word-wrap: break-word;
+            max-width: 90%;
+        }
+        .status {
+            position: absolute;
+            top: 20px;
+            font-size: 1.2rem;
+            color: #00FF00;
+        }
+    </style>
+</head>
+<body>
+<div class="status">● Sistema Ouvindo...</div>
+<div id="texto-gigante">
+    Aguardando a fala do médico...
+</div>
+
+<script>
+
+    setInterval(() => {
+        fetch('/api/acessibilidade/ultima-frase')
+            .then(response => response.text())
+            .then(data => {
+                if(data) document.getElementById('texto-gigante').innerText = data;
+            });
+    }, 1000);
+</script>
+</body>
+</html>
