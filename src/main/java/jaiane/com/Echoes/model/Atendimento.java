@@ -17,16 +17,20 @@ public class Atendimento {
     private String textoTranscrito;
     private String timestamp;
 
+    private String conteudo;
+    private String dataHora;
 
     public Atendimento(){
 
     }
 
-    public Atendimento(String id, String tipoAtendimento, String textoTranscrito, String timestamp) {
+    public Atendimento(String id, String tipoAtendimento, String textoTranscrito, String timestamp, String conteudo, String dataHora) {
         this.id = id;
         this.tipoAtendimento = tipoAtendimento;
         this.textoTranscrito = textoTranscrito;
         this.timestamp = timestamp;
+        this.conteudo = conteudo;
+        this.dataHora=dataHora;
     }
 
     public String getId() {
@@ -59,6 +63,22 @@ public class Atendimento {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public String getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(String dataHora) {
+        this.dataHora = dataHora;
     }
 }
 
