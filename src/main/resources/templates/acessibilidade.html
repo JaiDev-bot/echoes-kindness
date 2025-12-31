@@ -4,48 +4,53 @@
     <title>Echoes of Kindness - Acessibilidade</title>
     <style>
         body {
-            background-color: #000; /* Fundo preto para alto contraste */
-            color: #FFFF00; /* Letras amarelas (melhor para idosos/baixa visão) */
+            background-color: #000;
+            color: #FFFF00;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow-y: auto; /* Permite scroll vertical */
         }
         #texto-gigante {
             font-size: 8vw;
             text-align: center;
-            padding: 20px;
+            padding: 60px 20px;
             line-height: 1.2;
             word-wrap: break-word;
             max-width: 90%;
         }
         .status {
-            position: absolute;
+            position: fixed;
             top: 20px;
             font-size: 1.2rem;
             color: #00FF00;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 10px;
         }
     </style>
 </head>
 <body>
 <div class="status">● Sistema Ouvindo...</div>
-<div id="texto-gigante">
-    Aguardando a fala do médico...
-</div>
+
+<div id="texto-gigante">Aguardando a fala do médico...</div>
 
 <script>
-
     setInterval(() => {
         fetch('/api/acessibilidade/ultima-frase')
             .then(response => response.text())
             .then(data => {
-                if(data) document.getElementById('texto-gigante').innerText = data;
-            });
-    }, 1000);
+                if(data && data !== "") {
+                    const divTexto = document.getElementById('texto-gigante');
+                    divTexto.innerText = data;
+                    // Força o scroll para baixo para ver as frases novas
+                    window.scrollTo(0, document.body.scrollHeight);
+                }
+            })
+            .catch(err => console.error("Erro ao buscar frase:", err));
+    }, 1000); //
 </script>
 </body>
 </html>
