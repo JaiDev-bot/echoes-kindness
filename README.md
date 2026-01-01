@@ -34,6 +34,8 @@ A interface `acessibilidade.html` foi desenvolvida com foco total na legibilidad
 * **Localização**: Recurso hospedado em `Brazil South` para mínima latência.
 * **Persistência Automática**: Ao concluir uma frase (`recognized`), os dados são salvos no **Azure Cosmos DB**.
 
+  ![Cosmo DB](https://github.com/JaiDev-bot/echoes-kindness/blob/main/cosmosVoz.png)
+
 ## 📁 Estrutura do Projeto
 * `src/main/java/jaiane/com/Echoes/controller/`: Rotas de ativação e tela.
 * `src/main/java/jaiane/com/Echoes/service/`: Lógica de integração com Azure Speech.
