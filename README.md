@@ -4,7 +4,7 @@
 
 ---
 
-## 📺 Demonstração em Vídeo
+## 📺 Demonstração em vídeo
 > [!IMPORTANT]
 > Clique no link abaixo para visualizar a transcrição em tempo real integrada ao sistema.
 >
@@ -19,30 +19,61 @@
 * **Azure Cosmos DB**: Banco de dados NoSQL escalável para persistência dos atendimentos.
 * **Thymeleaf**: Engine de templates para a interface de acessibilidade.
 
-## 🛠️ Diferenciais Técnicos
+## 🛠️ Diferenciais técnicos
 
 ### 1. Transcrição Assíncrona e Baixa Latência
 O sistema utiliza o SDK da Microsoft para realizar o reconhecimento contínuo de fala. Através do evento `recognizing`, as palavras aparecem na tela enquanto o usuário fala, garantindo uma comunicação fluida e sem pausas dramáticas.
 
-### 2. UX de Acessibilidade
+### 2. UX de acessibilidade
 A interface `acessibilidade.html` foi desenvolvida com foco total na legibilidade:
 * **Fundo Preto / Letras Amarelas**: Máximo contraste para baixa visão.
 * **Tipografia Gigante (`8vw`)**: Facilita a leitura à distância.
 * **Auto-Scroll**: Lógica em JavaScript para manter as frases recentes sempre visíveis.
 
-### 3. Integração Cloud Nativa
+### 3. Integração cloud nativa
 * **Localização**: Recurso hospedado em `Brazil South` para mínima latência.
 * **Persistência Automática**: Ao concluir uma frase (`recognized`), os dados são salvos no **Azure Cosmos DB**.
 
   ![Cosmo DB](https://github.com/JaiDev-bot/echoes-kindness/blob/main/cosmosVoz.png)
 
-## 📁 Estrutura do Projeto
+---
+
+<details>
+  <summary>Por que Cosmo DB?</summary>
+
+  > Não guardamos os atendimentos no Cosmos DB apenas por ser um banco NoSQL escalável de classe mundial. Existe uma camada de proteção estratégica aqui:
+
+### 1. Valor probatório e auditoria judicial 📜
+Em um ambiente hospitalar, o que não é registrado, não aconteceu. 
+* **Integridade dos dados:** O Cosmos DB oferece garantias de consistência que asseguram que o registro da consulta não foi alterado indevidamente.
+* **Timestamp inviolável:** Cada atendimento é gravado com um carimbo de tempo preciso. Em caso de processos judiciais ou auditorias de conformidade (como a LGPD), temos uma trilha de auditoria clara de quem falou o quê e quando.
+* **Disponibilidade 99.999%:** Se um juiz pedir os dados, o sistema não pode estar "fora do ar". A replicação global da Azure garante que a prova esteja sempre acessível.
+
+### 2. Governança e LGPD por design 🔐
+* **Criptografia em Repouso:** Todos os dados no Cosmos DB são criptografados por padrão, atendendo às normas mais rigorosas de proteção de dados sensíveis de saúde.
+* **Isolamento de Dados:** Através das Partition Keys (`tipoAtendimento`), garantimos que os dados sejam organizados de forma lógica e segura, facilitando o expurgo de dados conforme o direito ao esquecimento previsto na lei.
+  
+</details>
+
+<details>
+<summary> Por que Azure Speech Services? </summary>
+
+> Segurança em saúde também é sobre manter o profissionalismo. O **Azure Speech Services** possui camadas de inteligência que protegem a transcrição:
+> 
+* **Content Moderation:** A IA da Azure pode ser configurada para identificar e mascarar palavrões ou conteúdos impróprios automaticamente durante a transcrição.
+* **Proteção de Marca e Ética:** Isso evita que termos ofensivos ou erros de interpretação chulos sejam imortalizados no prontuário do paciente, protegendo a imagem da instituição e do médico.
+
+[print de *]()
+  
+</details>
+
+## 📁 Estrutura do projeto
 * `src/main/java/jaiane/com/Echoes/controller/`: Rotas de ativação e tela.
 * `src/main/java/jaiane/com/Echoes/service/`: Lógica de integração com Azure Speech.
 * `src/main/java/jaiane/com/Echoes/config/`: Configurações de Cloud.
 * `src/main/resources/templates/`: Interface de acessibilidade (HTML/CSS/JS).
 
-## 🔧 Como Executar
+## 🔧 Como executar
 1. Configure suas chaves no `application.properties`:
    ```properties
    ai.speech.key=SUA_CHAVE_AQUI
