@@ -12,7 +12,7 @@
 
 ---
 
-## 🚀 Tecnologias e Stack
+##  Tecnologias e Stack
 * **Java 21**: Versão de longo suporte para garantir robustez e performance.
 * **Spring Boot 3.5.9**: Framework base para a construção da API escalável.
 * **Azure Cognitive Services (Speech-to-Text)**: Motor de IA para transcrição de áudio em tempo real.
@@ -21,7 +21,7 @@
 
 ## 🛠️ Diferenciais técnicos
 
-### 1. Transcrição Assíncrona e Baixa Latência
+### 1. Transcrição assíncrona e baixa Latência
 O sistema utiliza o SDK da Microsoft para realizar o reconhecimento contínuo de fala. Através do evento `recognizing`, as palavras aparecem na tela enquanto o usuário fala, garantindo uma comunicação fluida e sem pausas dramáticas.
 
 ### 2. UX de acessibilidade
@@ -37,6 +37,7 @@ A interface `acessibilidade.html` foi desenvolvida com foco total na legibilidad
   ![Cosmo DB](https://github.com/JaiDev-bot/echoes-kindness/blob/main/cosmosVoz.png)
 
 ---
+
 
 <details>
   <summary>Por que Cosmo DB?</summary>
@@ -55,6 +56,27 @@ Em um ambiente hospitalar, o que não é registrado, não aconteceu.
   
 </details>
 
+<details> 
+ <summary>🧩 A Lógica dos Fragmentos: Por que o texto quebra no Cosmos DB? </summary>
+
+> O nosso container no **Azure Cosmos DB**, vai notar que as transcrições aparecem em fragmentos. Isso não é um bug, é a implementação de um fluxo de **Reconhecimento Contínuo e Assíncrono**.
+
+### 1. O Conceito de "Unidade de Pensamento" (Utterance)
+A IA da Azure não espera o médico ditar um parágrafo inteiro. Ela trabalha com **Utterances** (enunciados). 
+* Sempre que o sistema detecta uma pausa natural, uma queda de entonação ou o fim de uma sentença, o evento `recognized` é disparado.
+* Cada disparo gera um novo documento no Cosmos DB. 
+
+### 2. Vantagens Estratégicas da Fragmentação
+* **Segurança Jurídica:** Em vez de um blocão de texto que poderia ser editado, temos "logs" granulares de cada frase dita, com seu próprio carimbo de tempo (*timestamp*). Isso cria uma linha do tempo incontestável da consulta.
+* **Performance de Interface:** É essa quebra que permite que o paciente leia a frase anterior enquanto a próxima já está sendo processada.
+* **Análise de Sentimento Granular:** Ter as frases fragmentadas permite que, no futuro, possamos rodar IAs de análise de sentimento para identificar exatamente em qual momento da consulta o paciente ficou mais ansioso ou o médico foi mais enfático.
+
+### 3. Integridade e Reconstrução
+Graças à nossa estrutura de dados no modelo `Atendimento`, cada fragmento carrega o `id` e o contexto necessário para que, se precisarmos, possamos reconstruir o diálogo completo apenas ordenando os registros pelo tempo.
+
+</details>
+
+
 <details>
 <summary> Por que Azure Speech Services? </summary>
 
@@ -63,7 +85,7 @@ Em um ambiente hospitalar, o que não é registrado, não aconteceu.
 * **Content Moderation:** A IA da Azure pode ser configurada para identificar e mascarar palavrões ou conteúdos impróprios automaticamente durante a transcrição.
 * **Proteção de Marca e Ética:** Isso evita que termos ofensivos ou erros de interpretação chulos sejam imortalizados no prontuário do paciente, protegendo a imagem da instituição e do médico.
 
-[print de *]()
+![print](https://github.com/JaiDev-bot/echoes-kindness/blob/main/palavr%C3%B5es.png)
   
 </details>
 
