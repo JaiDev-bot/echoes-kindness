@@ -40,7 +40,7 @@ A interface `acessibilidade.html` foi desenvolvida com foco total na legibilidad
 
 
 <details>
-  <summary>Por que Cosmo DB?</summary>
+  <summary> 🎲 Por que Cosmo DB?</summary>
 
   > Não guardamos os atendimentos no Cosmos DB apenas por ser um banco NoSQL escalável de classe mundial. Existe uma camada de proteção estratégica aqui:
 
@@ -78,7 +78,7 @@ Graças à nossa estrutura de dados no modelo `Atendimento`, cada fragmento carr
 
 
 <details>
-<summary> Por que Azure Speech Services? </summary>
+<summary> 🔊 Por que Azure Speech Services? </summary>
 
 > Segurança em saúde também é sobre manter o profissionalismo. O **Azure Speech Services** possui camadas de inteligência que protegem a transcrição:
 > 
