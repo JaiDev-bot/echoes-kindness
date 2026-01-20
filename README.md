@@ -3,12 +3,6 @@
 **Echoes of Kindness** é uma solução de acessibilidade em tempo real desenvolvida para transformar a comunicação em ambientes de saúde. O projeto utiliza Inteligência Artificial para transcrever a fala de profissionais de saúde instantaneamente, exibindo-a em uma interface de alto contraste projetada para pacientes com deficiência auditiva, idosos ou pessoas com baixa visão.
 
 
->[!IMPORTANT]
->Se quiser ver uma documentação mais detalhada sobre a arquitetura:
->
->[![GitBook](https://img.shields.io/badge/GITBOOK-000?style=for-the-badge&logoColor=FFF&color=000)](https://app.gitbook.com/invite/3BzJD9kc8XUB2pCNxAEC/mY2pfyatv2CRFzDgJs21)
->
->
 
 ---
 
