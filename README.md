@@ -29,12 +29,12 @@ O sistema utiliza o SDK da Microsoft para realizar o reconhecimento contínuo de
 ### 2. UX de acessibilidade
 A interface `acessibilidade.html` foi desenvolvida com foco total na legibilidade:
 * **Fundo Preto / Letras Amarelas**: Máximo contraste para baixa visão.
-* **Tipografia Gigante (`8vw`)**: Facilita a leitura à distância.
+* **Tipografia gigante (`8vw`)**: Facilita a leitura à distância.
 * **Auto-Scroll**: Lógica em JavaScript para manter as frases recentes sempre visíveis.
 
 ### 3. Integração cloud nativa
 * **Localização**: Recurso hospedado em `Brazil South` para mínima latência.
-* **Persistência Automática**: Ao concluir uma frase (`recognized`), os dados são salvos no **Azure Cosmos DB**.
+* **Persistência automática**: Ao concluir uma frase (`recognized`), os dados são salvos no **Azure Cosmos DB**.
 
   ![Cosmo DB](https://github.com/JaiDev-bot/echoes-kindness/blob/main/cosmosVoz.png)
 
