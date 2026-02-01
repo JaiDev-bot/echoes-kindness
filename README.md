@@ -12,6 +12,36 @@
 >
 > 🎥 **[ASSISTA AO VÍDEO DO PROJETO AQUI]** (https://youtu.be/zX9IBxTWcRw)
 
+## Diagrama de fluxo
+
+```mermaid
+flowchart TD
+    subgraph Local_Environment ["Dispositivo local (Spring Boot + Java 21)"]
+        A[Microfone / Hardware] -->|Audio Stream| B[SpeechService]
+        B --> C{Evento: recognizing}
+        C -- "Texto parcial" --> D[Interface Thymeleaf]
+        B --> E{Evento: recognized}
+    end
+
+    subgraph Azure_Cloud ["Microsoft Azure infrastructure (Brasil )"]
+        B -- "SDK Java (WebSocket)" --> F[[Azure AI Speech Services]]
+        F -- "Transcrição contínua" --> B
+        E -- "Entidade atendimento (JSON)" --> G[(Azure Cosmos DB)]
+    end
+
+    subgraph Controller_Interface ["Interface de acesso"]
+        D -- "Polling 1s (JS Fetch)" --> H[SpeechController]
+        H <--> B
+        I[Paciente / Idoso] -- "Visualização 8vw" --> D
+    end
+
+    %% Estilização para a Estética do Contraste
+    style Azure_Cloud fill:#0078d4,color:#fff,stroke:#005a9e
+    style Local_Environment fill:#2d2d2d,color:#fff,stroke:#000
+    style Controller_Interface fill:#f4f4f4,color:#000,stroke:#333
+    style D fill:#000,color:#FFFF00,stroke:#FFFF00
+```
+
 ---
 
 ##  Tecnologias e Stack
